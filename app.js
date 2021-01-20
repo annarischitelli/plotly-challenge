@@ -3,6 +3,10 @@ function chartData(id){
     d3.json("samples.json").then((data) => {
         var sampleData = data.samples.filter(samples => samples.id === id)[0];
         console.log(sampleData)
+        var sampleValue = sample.sample_values.slice(0.10).reverse();
+        console.log(sampleValue);
+        
+    
     })
 
 };
