@@ -1,9 +1,11 @@
 // 1. Use D3 to read in samples.json
-d3.json("samples.json").then((data) => {
-    var sample_data = data.samples.filter(sample_data => samples.id)[0];
-    console.log(sample_data);
-}
+function chartData(id){
+    d3.json("samples.json").then((data) => {
+        var sampleData = data.samples.filter(samples => samples.id === id)[0];
+        console.log(sampleData)
+    })
 
+};
 // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
     // 2a. Use sample_values as the values for the bar chart.
     // 2b. Use otu_ids as the labels for the bar chart.
