@@ -11,7 +11,7 @@ function chartData(id){
         console.log(otu);
         // Map otu_ids to OTU for reference later
         var otuIDs = otu.map(data => "OTU" + data)
-        var otu_labels = sampleData.otu_labels.slice(0,10).reverse();
+        var otu_labels = sample.otu_labels.slice(0,10).reverse();
         console.log(otu_labels)
 
 // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
@@ -37,7 +37,7 @@ function chartData(id){
         };
 
         var data = [barChart];
-        plotly.newPlot("bar", data, layout);
+        Plotly.newPlot("bar", data, layout);
 
 // 3. Create a bubble chart that displays each sample.
     // 3a. Use otu_ids for the x values.
@@ -63,14 +63,35 @@ function chartData(id){
         }
 
         var data2 = [bubbleChart]
-        plotly.newPlot("bubble", data2, layout)
+        Plotly.newPlot("bubble", data2, layout)
     })
 };
 
 // 4. Display the sample metadata, i.e., an individual's demographic information.
-
+function sampleMetadata(id){
+    d3.json("samples.json").then((data) => {
+        var metadata = data.metadata;
+        console.log(metadata);
+        var demoInfo = metadata.filter(row => row.id.toString()=== id)[0];
+        console.log(demoInfo)
+    });
+}
 
 // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
 
 
 // 6. Update all of the plots any time that a new sample is selected.
+
+// 7. Call functions to create webpage
+function run() {
+    var dropdownMenu = d3.selectAll("#selDataset");
+    d3.json("samples.json").then ((data) => {
+        data.names.forEach(function (name){
+            dropdownMenu.append("option").text(name).property("value");
+            console.log(data.names[0]);
+        });
+        chartData(data.names[0]);
+        sampleMetadata (data.names[0]);
+    })
+}
+run()
