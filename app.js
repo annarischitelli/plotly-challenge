@@ -27,7 +27,7 @@ function chartData(id){
         };
         
         var layout = {
-            tile: "Top 10 OTUs found in individuals"
+            tile: "Top 10 OTUs found in individuals",
             margin: {
                 l: 125,
                 r: 125,
@@ -45,15 +45,27 @@ function chartData(id){
     // 3c. Use sample_values for the marker size.
     // 3d. Use otu_ids for the marker colors.
     // 3e. Use otu_labels for the text values.
+        var bubbleChart = {
+            x: sample.otu_ids,
+            y: sample.sample_values,
+            marker: {
+                color: sample.otu_ids,
+                size: sample.sample_values
+            },
+            mode: "markers",
+            text: sample.otu_labels
+        }
 
-    });
+        var layout = {
+            xaxis: {title: "OTU IDs"},
+            height: 500,
+            width: 1200
+        }
 
+        var data2 = [bubbleChart]
+        plotly.newPlot("bubble", data2, layout)
+    })
 };
-
-
-
-
-
 
 // 4. Display the sample metadata, i.e., an individual's demographic information.
 
