@@ -78,7 +78,10 @@ function sampleMetadata(id){
 }
 
 // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
-
+function dropdownChanged(id) {
+    chartData(id)
+    sampleMetadata(id)
+}
 
 // 6. Update all of the plots any time that a new sample is selected.
 
