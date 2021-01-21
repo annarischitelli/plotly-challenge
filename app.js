@@ -73,7 +73,13 @@ function sampleMetadata(id){
         var metadata = data.metadata;
         console.log(metadata);
         var demoInfo = metadata.filter(row => row.id.toString()=== id)[0];
-        console.log(demoInfo)
+        console.log(demoInfo);
+        var demoFinal = d3.select("#sample-metadata");
+        demoFinal.html("");
+        // My group helped me with the following lines of code because I was SO stuck.
+        Object.entries(demoInfo).forEach((key) => {
+            demoFinal.append("h5").text(key[0] + ": " + key[1] + "\n");
+        });
     });
 }
 
@@ -84,8 +90,7 @@ function dropdownChanged(id) {
 }
 
 // 6. Update all of the plots any time that a new sample is selected.
-
-// 7. Call functions to create webpage
+// 6a. Call functions to create webpage
 function run() {
     var dropdownMenu = d3.selectAll("#selDataset");
     d3.json("samples.json").then ((data) => {
