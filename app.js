@@ -1,17 +1,17 @@
 // 1. Use D3 to read in samples.json
 function chartData(id){
     d3.json("samples.json").then((data) => {
-        var sample = data.samples.filter(s => s.id === id)[0];
-        console.log(sample);
+        var sampleData = data.samples.filter(s => s.id === id)[0];
+        console.log(sampleData);
         // Pull out top 10 sample values 
-        var sampleValues = sample.sample_values.slice(0, 10).reverse();
+        var sampleValues = sampleData.sample_values.slice(0, 10).reverse();
         console.log(sampleValues);
         // Pull out top 10 OTUs found in individuals
-        var otu = sample.otu_ids.slice(0, 10).reverse();
+        var otu = sampleData.otu_ids.slice(0, 10).reverse();
         console.log(otu);
         // Map otu_ids to OTU for reference later
         var otuIDs = otu.map(data => "OTU" + data)
-        var otu_labels = sample.otu_labels.slice(0,10).reverse();
+        var otu_labels = sampleData.otu_labels.slice(0,10).reverse();
         console.log(otu_labels)
 
 // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
@@ -48,14 +48,14 @@ function chartData(id){
     // 3d. Use otu_ids for the marker colors.
     // 3e. Use otu_labels for the text values.
         var bubbleChart = {
-            x: sample.otu_ids,
-            y: sample.sample_values,
+            x: sampleData.otu_ids,
+            y: sampleData.sample_values,
             marker: {
-                color: sample.otu_ids,
-                size: sample.sample_values
+                color: sampleData.otu_ids,
+                size: sampleData.sample_values
             },
             mode: "markers",
-            text: sample.otu_labels
+            text: sampleData.otu_labels
         }
 
         var layout = {
