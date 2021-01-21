@@ -29,10 +29,10 @@ function chartData(id){
         var layout = {
             tile: "Top 10 OTUs found in individuals",
             margin: {
-                l: 80,
-                r: 80,
-                t: 125,
-                b: 125,
+                left: 125,
+                right: 125,
+                top: 125,
+                bottom: 125,
             }
         };
 
