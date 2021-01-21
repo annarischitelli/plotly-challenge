@@ -27,7 +27,9 @@ function chartData(id){
         };
         
         var layout = {
-            tile: "Top 10 OTUs found in individuals",
+            title: "Top 10 OTUs found in individuals",
+            xaxis: {title: "Sample Values"},
+            yaxis: {title: "OTU ID"},
             margin: {
                 left: 125,
                 right: 125,
@@ -84,7 +86,7 @@ function sampleMetadata(id){
 }
 
 // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
-function dropdownChanged(id) {
+function dropdownChange(id) {
     chartData(id)
     sampleMetadata(id)
 }
